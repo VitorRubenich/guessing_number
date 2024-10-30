@@ -5,8 +5,6 @@
 
 using namespace std;
 
-
-
 int main()
 {
 	int exit_game = false;
@@ -33,7 +31,6 @@ int main()
 		}while(dificulty_choice < 1 || dificulty_choice > 3);
 		choices_left = dificulty_choice_message(dificulty_choice);
 	
-		
 		do{
 			//TODO The user should be able to enter their guess.
 			cout << "\nEnter your guess: ";
@@ -45,13 +42,10 @@ int main()
 			}
 		}while(choices_left >= 1 || !win);
 		
-		
 		// do you want to play again?
 		cout << "Do you wanna play another game? (0 -> No - 1 -> Yes)";
 		cin >> exit_game;
-		
 	}while(exit_game);
-
 }
 
 // When the game starts, it should display a welcome message along with the rules of the game.
