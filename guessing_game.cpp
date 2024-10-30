@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-#include <time.h>
+#include <ctime>
 #include "guessing_game.h"
 
 using namespace std;
@@ -30,9 +30,12 @@ int main()
 			cin >> dificulty_choice;
 		}while(dificulty_choice < 1 || dificulty_choice > 3);
 		choices_left = dificulty_choice_message(dificulty_choice);
-	
+		
+		//TODO timer init
+		clock_t start = std::clock();
+		
 		do{
-			//TODO The user should be able to enter their guess.
+			//The user should be able to enter their guess.
 			cout << "\nEnter your guess: ";
 			cin >> guess;
 			choices_left--;
@@ -41,6 +44,11 @@ int main()
 				choices_left = 0;
 			}
 		}while(choices_left >= 1 || !win);
+		
+		//TODO timer end
+		clock_t end = std::clock();
+		double duration = double(end - start) / CLOCKS_PER_SEC;
+		cout << "Total time: " << duration << " seconds. \n\n";
 		
 		// do you want to play again?
 		cout << "Do you wanna play another game? (0 -> No - 1 -> Yes)";
@@ -73,7 +81,7 @@ bool check(int guess, int rand_number, int choices_left, int dificulty){
 				break;
 			default: break;
 		}
-		cout << "Congratulations! You guessed the correct number with " << (aux - choices_left) << " attempts.";
+		cout << "Congratulations! You guessed the correct number with " << (aux - choices_left) << " attempts.\n\n";
 		return true;
 	}else{
 		cout << "Incorrect! The number is " << (guess > rand_number ? "less than " : "greater than ") << guess << ".\n";
